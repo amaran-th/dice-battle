@@ -1,15 +1,10 @@
 package dice_battle.domain;
 
 public class HealthPoint {
-    private static final int DEFAULT_HEALTH_POINT_VALUE = 100;
 
     private int value;
 
-    public HealthPoint() {
-        this.value = DEFAULT_HEALTH_POINT_VALUE;
-    }
-
-    private HealthPoint(final int value) {
+    public HealthPoint(final int value) {
         validateNegativeValue(value);
         this.value = value;
     }
