@@ -16,4 +16,8 @@ public class Names {
     public int calculateSize() {
         return names.size();
     }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }
