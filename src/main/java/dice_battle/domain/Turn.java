@@ -23,4 +23,7 @@ public class Turn {
         return new Turn(value + 1);
     }
 
+    public int getValue() {
+        return value;
+    }
 }

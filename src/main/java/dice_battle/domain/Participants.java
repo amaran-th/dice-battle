@@ -17,4 +17,8 @@ public class Participants {
                 .map(Participant::new)
                 .collect(Collectors.toList());
     }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
 }
