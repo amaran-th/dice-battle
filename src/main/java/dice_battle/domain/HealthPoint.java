@@ -22,4 +22,11 @@ public class HealthPoint {
         return new HealthPoint(value - damage);
     }
 
+    public boolean isPositive() {
+        return value > 0;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }

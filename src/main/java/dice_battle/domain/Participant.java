@@ -10,4 +10,20 @@ public class Participant {
         this.name = name;
         this.healthPoint = new HealthPoint(DEFAULT_HEALTH_POINT_VALUE);
     }
+
+    public void sufferDamage(final int damage) {
+        this.healthPoint = healthPoint.sufferDamage(damage);
+    }
+
+    public boolean isAlive() {
+        return this.healthPoint.isPositive();
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public HealthPoint getHealthPoint() {
+        return healthPoint;
+    }
 }
