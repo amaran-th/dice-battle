@@ -13,7 +13,7 @@ public class Turn {
         this.value = value;
     }
 
-    private void validateNotPositiveValue(int value) {
+    private void validateNotPositiveValue(final int value) {
         if (value <= 0) {
             throw new IllegalArgumentException("턴 수는 1 이상이어야 합니다.");
         }
