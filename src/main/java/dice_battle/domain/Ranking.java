@@ -1,15 +1,31 @@
 package dice_battle.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class Ranking {
     private final Stack<Name> names;
+    private final int participantCount;
 
-    public Ranking() {
+    public Ranking(final int participantCount) {
         names = new Stack<>();
+        this.participantCount = participantCount;
     }
 
-    public Stack<Name> getNames() {
-        return names;
+    public void rank(final Name name) {
+        names.push(name);
+    }
+
+    public boolean isAllParticipantsRanking() {
+        return names.size() == participantCount;
+    }
+
+    public List<Name> getRanking() {
+        final List<Name> rankingResult = new ArrayList<>();
+        while (!names.isEmpty()) {
+            rankingResult.add(names.pop());
+        }
+        return rankingResult;
     }
 }

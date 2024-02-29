@@ -5,8 +5,8 @@ import dice_battle.domain.Participant;
 import dice_battle.domain.Participants;
 import dice_battle.domain.Ranking;
 import dice_battle.domain.Turn;
+import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -84,10 +84,9 @@ public class OutputView {
 
     public static void printGameResult(final Ranking ranking, final Turn turn) {
         System.out.println("=============== 배틀 결과 ===============");
-        int rank = 1;
-        final Stack<Name> names = ranking.getNames();
-        while (!names.isEmpty()) {
-            System.out.println(rank + "등 : " + names.pop());
+        final List<Name> names = ranking.getRanking();
+        for (int i = 1; i <= names.size(); i++) {
+            System.out.println(i + "등 : " + names.get(i - 1));
         }
         System.out.println("최종 턴 수 : " + turn.getValue() + "턴");
     }
