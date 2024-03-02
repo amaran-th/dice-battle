@@ -12,6 +12,9 @@ public class Participants {
         if (names.calculateSize() < MIN_PARTICIPANT_COUNT) {
             throw new IllegalArgumentException("참여자 수는 최소 2명 이상이어야 합니다.");
         }
+        if (names.existDuplicate()) {
+            throw new IllegalArgumentException("같은 이름의 참여자는 2명 이상 존재할 수 없습니다.");
+        }
         this.participants = names.getNames()
                 .stream()
                 .map(Participant::new)

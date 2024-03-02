@@ -1,6 +1,7 @@
 package dice_battle.domain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,10 @@ public class Names {
 
     public int calculateSize() {
         return names.size();
+    }
+
+    public boolean existDuplicate() {
+        return new HashSet<>(names).size() != names.size();
     }
 
     public List<Name> getNames() {

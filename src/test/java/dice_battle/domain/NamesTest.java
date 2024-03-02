@@ -29,4 +29,29 @@ class NamesTest {
                 .hasMessage("이름 값은 공백이 될 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("여러 이름 객체 중 중복된 이름이 존재한다면 true를 반환한다.")
+    void existDuplicate_true() {
+        //given
+        final Names names = new Names("아마란스,아마란스,보름");
+
+        //when
+        final boolean result = names.existDuplicate();
+
+        //then
+        Assertions.assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("여러 이름 객체 중 중복된 이름이 존재하지 않는다면 false를 반환한다.")
+    void existDuplicate_false() {
+        //given
+        final Names names = new Names("아마란스,보름");
+
+        //when
+        final boolean result = names.existDuplicate();
+
+        //then
+        Assertions.assertThat(result).isFalse();
+    }
 }
