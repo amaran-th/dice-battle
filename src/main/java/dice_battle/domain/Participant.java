@@ -3,7 +3,7 @@ package dice_battle.domain;
 import java.util.Objects;
 
 public class Participant {
-    private static final int DEFAULT_HEALTH_POINT_VALUE = 100;
+    private static final int DEFAULT_HEALTH_POINT_VALUE = 6;
 
     private final Name name;
     private HealthPoint healthPoint;

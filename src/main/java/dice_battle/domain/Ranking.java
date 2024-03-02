@@ -21,6 +21,10 @@ public class Ranking {
         return names.size() == participantCount;
     }
 
+    public boolean isAllParticipantsWithoutFirstRanking() {
+        return names.size() == participantCount - 1;
+    }
+
     public List<Name> getRanking() {
         final List<Name> rankingResult = new ArrayList<>();
         while (!names.isEmpty()) {

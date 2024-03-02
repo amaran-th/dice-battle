@@ -1,7 +1,6 @@
 package dice_battle.view;
 
 import dice_battle.domain.Name;
-import dice_battle.domain.Participant;
 import dice_battle.domain.Participants;
 import dice_battle.domain.Ranking;
 import dice_battle.domain.Turn;
@@ -28,13 +27,13 @@ public class OutputView {
                 """);
     }
 
-    public static void printTurnDescription(final Participants participants,
-                                            final Map<Participant, Integer> speedPerParticipant) {
-        System.out.println("=============== 1번째 턴 ===============");
+    public static void printTurnDescription(final Turn turn,
+                                            final Participants participants,
+                                            final List<Name> survivors,
+                                            final Map<Name, Integer> speedPerParticipant) {
+        System.out.println(String.format("=============== %d번째 턴 ===============", turn.getValue()));
         printHealthPointStatus(participants);
-        System.out.println();
-        printParticipantSpeed(participants, speedPerParticipant);
-        printAttackOrder(speedPerParticipant);
+        printParticipantSpeed(survivors, speedPerParticipant);
     }
 
     public static void printHealthPointStatus(final Participants participants) {
@@ -45,48 +44,47 @@ public class OutputView {
                 .collect(Collectors.joining(", "));
 
         System.out.println("> 체력 상태 - " + status);
+        System.out.println();
     }
 
-    public static void printParticipantSpeed(final Participants participants,
-                                             final Map<Participant, Integer> speedPerParticipant) {
-        final String participantSpeed = participants.getParticipants()
-                .stream()
-                .map(participant -> participant.getName().getValue() + ": " + speedPerParticipant.get(participant))
+    private static void printParticipantSpeed(final List<Name> survivors,
+                                              final Map<Name, Integer> speedPerParticipant) {
+        final String participantSpeed = survivors.stream()
+                .map(name -> name.getValue() + ": " + speedPerParticipant.get(name))
                 .collect(Collectors.joining(", "));
 
         System.out.println("> 공격 순서 - " + participantSpeed);
     }
 
-    public static void printAttackOrder(final Map<Participant, Integer> speedPerParticipant) {
-        final String attackOrder = speedPerParticipant.keySet()
-                .stream()
-                .map(participant -> participant.getName().getValue())
+    public static void printAttackOrder(final List<Name> speedPerParticipant) {
+        final String attackOrder = speedPerParticipant.stream()
+                .map(Name::getValue)
                 .collect(Collectors.joining(" -> "));
 
         System.out.println("> 이번 턴의 공격 순서 : " + attackOrder);
     }
 
-    public static void printOrder(final String name) {
-        System.out.println(String.format("> %s의 차례!", name));
+    public static void printOrder(final Name name) {
+        System.out.println(String.format("> %s의 차례!", name.getValue()));
     }
 
     public static void printDiceValue(final int value) {
         System.out.println(value);
     }
 
-    public static void printDamage(final Participant participant, final int damage) {
-        System.out.println("> '" + participant.getName().getValue() + "'에게 " + damage + "의 데미지!");
+    public static void printDamage(final Name name, final int damage) {
+        System.out.println("> '" + name.getValue() + "'에게 " + damage + "의 데미지!");
     }
 
-    public static void printLoseMessage(final Participant participant) {
-        System.out.println("> '" + participant.getName().getValue() + "'(이)가 패배하였습니다.");
+    public static void printLoseMessage(final Name name) {
+        System.out.println("> '" + name.getValue() + "'(이)가 패배하였습니다.");
     }
 
     public static void printGameResult(final Ranking ranking, final Turn turn) {
         System.out.println("=============== 배틀 결과 ===============");
         final List<Name> names = ranking.getRanking();
         for (int i = 1; i <= names.size(); i++) {
-            System.out.println(i + "등 : " + names.get(i - 1));
+            System.out.println(i + "등 : " + names.get(i - 1).getValue());
         }
         System.out.println("최종 턴 수 : " + turn.getValue() + "턴");
     }
