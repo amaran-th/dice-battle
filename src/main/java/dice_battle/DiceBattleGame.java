@@ -33,10 +33,10 @@ public class DiceBattleGame {
     }
 
     private void runGameTurns() {
-        while (!referee.isAllParticipantsRanking()) {
+        while (referee.isNotAllParticipantsRanking()) {
             final List<Name> names = findAttackOrder();
             runAttackTime(names);
-            if (!referee.isAllParticipantsRanking()) {
+            if (referee.isNotAllParticipantsRanking()) {
                 turn = turn.countTurn();
             }
         }
@@ -46,12 +46,12 @@ public class DiceBattleGame {
         final Map<Name, Integer> participantSpeed = referee.getParticipantSpeed();
         OutputView.printTurnDescription(turn, referee.getParticipants(), referee.findSurvivorNames(),
                 participantSpeed);
-        final List<Name> names = referee.getSortedParticipantNames(participantSpeed);
+        final List<Name> names = referee.findSortedParticipantNames(participantSpeed);
         OutputView.printAttackOrder(names);
         return names;
     }
 
-    private void runAttackTime(List<Name> names) {
+    private void runAttackTime(final List<Name> names) {
         for (final Name attacker : names) {
             if (referee.isDead(attacker)) {
                 continue;

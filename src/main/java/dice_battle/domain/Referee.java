@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class Referee {
 
-    private Participants participants;
-    private Ranking ranking;
+    private final Participants participants;
+    private final Ranking ranking;
 
     public Referee(final Participants participants) {
         this.participants = participants;
@@ -37,15 +37,15 @@ public class Referee {
         }
     }
 
-    public boolean isAllParticipantsRanking() {
-        return ranking.isAllParticipantsRanking();
+    public boolean isNotAllParticipantsRanking() {
+        return !ranking.isAllParticipantsRanking();
     }
 
     public boolean isDead(final Name name) {
         return participants.isDead(name);
     }
 
-    public List<Name> getSortedParticipantNames(final Map<Name, Integer> participantSpeed) {
+    public List<Name> findSortedParticipantNames(final Map<Name, Integer> participantSpeed) {
         final List<Name> sortedNames = participantSpeed.entrySet()
                 .stream()
                 .sorted(Entry.comparingByValue())

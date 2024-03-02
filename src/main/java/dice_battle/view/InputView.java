@@ -21,13 +21,13 @@ public class InputView {
 
     public static void inputEnter1() {
         System.out.println("> 엔터를 눌러 주사위를 굴려주십시오");
-        System.out.print("첫 번째 주사위 값 :");
-        scanner.nextLine();
+        System.out.print("첫 번째 주사위 값");
+        scanner.next();
     }
 
     public static void inputEnter2() {
-        System.out.print("두 번째 주사위 값 :");
-        scanner.nextLine();
+        System.out.print("두 번째 주사위 값");
+        scanner.next();
     }
 
 }
