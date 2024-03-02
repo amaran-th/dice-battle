@@ -12,6 +12,10 @@
 | 참여자       | Participant    | 게임에 참여하는 참여자                   |
 | 주사위 배틀 게임 | DiceBattleGame | 주사위 배틀 게임                      |
 
+## 클래스 다이어그램
+
+![](dice_battle.png)
+
 ## 👨기능 목록
 
 ### 입력(InputView)
